@@ -1,0 +1,14 @@
+__pycache__/
+venv/
+*.pyc
+.env
+*.zip
+model/
+*.pkl
+*.npz
+attendance.db
+evidence/
+data/
+aligned/
+model_facenet/
+attendence_export.csv

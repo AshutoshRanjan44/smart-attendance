@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Attendance Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #555; padding: 10px; }
+        th { background-color: #222; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        img.thumb { width:80px; height:60px; object-fit:cover; border-radius:4px; }
+    </style>
+</head>
+<body>
+
+<h1>Smart Attendance Dashboard</h1>
+<table>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Timestamp</th>
+        <th>Evidence</th>
+        <th>Confidence</th>
+    </tr>
+
+    {% for row in rows %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>
+          <!-- row[3] is stored as a Windows path like: evidence\2025-12-04\ashu_224751.jpg -->
+          <a href="{{ row[3] | replace('\\','/') }}" target="_blank">
+            <img src="{{ row[3] | replace('\\','/') }}" class="thumb" alt="evidence">
+          </a>
+        </td>
+        <td>{{ "%.3f"|format(row[4]) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
